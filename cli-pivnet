@@ -1,0 +1,18 @@
+### DOWNLOAD AND INSTALL PIVNET CLI ###
+wget https://github.com/pivotal-cf/pivnet-cli/releases/download/v0.0.53/pivnet-linux-amd64-0.0.53
+chmod +x pivnet-linux-amd64-0.0.53
+sudo mv pivnet-linux-amd64-0.0.53 /usr/local/bin/pivnet
+
+### LOGIN ###
+pivnet login --api-token=$PIVNET_TOKEN
+#$PIVNET_TOKEN via https://network.pivotal.io/users/dashboard/edit-profile
+
+### LIST PRODUCTS ###
+pivnet product-files -p stemcells -r 3586.27
+pivnet product-files -p pivotal-container-service -r 1.1.4
+
+### DOWNLOAD PRODUCT ###
+pivnet dlpf -p pivotal-container-service -r 1.1.4 -g pivotal-container-service-1.1.4-build.5.pivotal
+
+### DOWNLOAD STEMCELL ###
+pivnet dlpf -p stemcells -r 3586.27 -g bosh-stemcell-3586.27-vsphere-esxi-ubuntu-trusty-go_agent.tgz --accept-eula
