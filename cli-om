@@ -1,0 +1,5 @@
+### UPLOAD STEMCELL ###
+om -t https://$IP -k -u admin -p $PASSWORD upload-stemcell -stemcell /data/BITS/PKS/bosh-stemcell-3586.27-vsphere-esxi-ubuntu-trusty-go_agent.tgz
+
+### UPLOAD PRODUCT ###
+om -t https://$IP -k -u admin -p $PASSWORD upload-product -product /data/BITS/PKS/pivotal-container-service-1.1.4-build.5.pivotal
