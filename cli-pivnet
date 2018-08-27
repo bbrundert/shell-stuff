@@ -13,6 +13,8 @@ pivnet product-files -p pivotal-container-service -r 1.1.4
 
 ### DOWNLOAD PRODUCT ###
 pivnet dlpf -p pivotal-container-service -r 1.1.4 -g pivotal-container-service-1.1.4-build.5.pivotal
+pivnet dlpf -p pivotal-container-service -r 1.1.4 -g kubectl-linux-amd64-v1.10.5
+pivnet dlpf -p pivotal-container-service -r 1.1.4 -g pks-linux-amd64-1.1.4-build.7
 
 ### DOWNLOAD STEMCELL ###
 pivnet dlpf -p stemcells -r 3586.27 -g bosh-stemcell-3586.27-vsphere-esxi-ubuntu-trusty-go_agent.tgz --accept-eula
