@@ -4,3 +4,9 @@ chmod a+x govc_linux_amd64
 sudo mv govc_linux_amd64 /usr/local/bin/govc
 
 ### see bashrc for environment variables ###
+
+sudo -i
+cd /etc/bash_completion.d/
+wget https://raw.githubusercontent.com/vmware/govmomi/master/scripts/govc_bash_completion
+source govc_bash_completion
+exit
