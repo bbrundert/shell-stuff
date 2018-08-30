@@ -1,0 +1,6 @@
+wget https://github.com/vmware/govmomi/releases/download/v0.18.0/govc_linux_amd64.gz
+gunzip govc_linux_amd64.gz
+chmod a+x govc_linux_amd64
+sudo mv govc_linux_amd64 /usr/local/bin/govc
+
+### see bashrc for environment variables ###
