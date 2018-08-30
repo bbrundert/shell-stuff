@@ -1,0 +1,19 @@
+git clone 
+cd pks-prep
+cp env-example env
+vi env
+# configure env file to your environment
+cd nsx-t
+chmod +x 1-install_nsx.sh
+./1-install_nsx.sh
+chmod +x 2-activate_nsx_cluster.sh
+./2-activate_nsx_cluster.sh
+chmod +x 3-configure_nsx.sh
+./3-configure_nsx.sh
+chmod +x 4-nsx-cert.sh
+./4-nsx-cert.sh
+cd ..
+chmod +x 1-upload_ova.sh
+./1-upload_ova.sh
+# Initial UI-based configuration on Ops Manager UI
+# Configure BOSH and install CPI
