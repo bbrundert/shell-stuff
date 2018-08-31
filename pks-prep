@@ -1,9 +1,11 @@
-git clone 
+# Download git repo for automatic PKS installation
+git clone https://github.com/bdereims/pks-prep.git
 cd pks-prep
 cp env-example env
 vi env
 # configure env file to your environment
 cd nsx-t
+# check README files on that folder as well
 chmod +x 1-install_nsx.sh
 ./1-install_nsx.sh
 chmod +x 2-activate_nsx_cluster.sh
@@ -12,8 +14,27 @@ chmod +x 3-configure_nsx.sh
 ./3-configure_nsx.sh
 chmod +x 4-nsx-cert.sh
 ./4-nsx-cert.sh
+# login to NSX 
+# change name of the edge node in NSX via Fabric > Nodes > Edges from "localhost" to e.g. "edge"
+# shutdown edge VM to increase size to 8 vCPUs and 16GB RAM
+# create t1 router and connect it to already exsiting t0 router
+# create new logical switch "ls-mgmt"
+# create new router port "ls-mgmt-gw" on ls-mgmt with IP 
+# Create new Compute Manager: Fabric > Compute Managers > "Add"
+# enter vCenter credentials
+# go to Fabric > Nodes > Hosts and select your vCenter from the "Managed by:" dropdown menu
+# select the cluster object and do a "Configure Cluster"
+# enable "Automatically Install NSX" and "Automatically Create Transport Node"
+# set Transport Zone to "tz-overlay"
+# set Uplink Profile to "tz-uplink-profile-overlay"
+# set IP assignment to "Use IP Pool" and select the automatically created "tunnel-ip-pool"
+# physical NIC is "vmnic1" on uplink-1
+# go to vCenter client and ensure the "vSwitch0" has MTU of 1600 configured! 
+# back to shell
 cd ..
 chmod +x 1-upload_ova.sh
 ./1-upload_ova.sh
 # Initial UI-based configuration on Ops Manager UI
 # Configure BOSH and install CPI
+# Ensure you use "NSX-T Networking" when configuring the "vCenter"! (see https://docs.pivotal.io/pivotalcf/2-1/customizing/vsphere-nsx-t.html#nsx-t-mode)
+# 
