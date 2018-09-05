@@ -15,9 +15,9 @@ chmod +x om-linux
 mv om-linux /usr/local/bin/om
 
 # Download certificate from ops manager
-alias omcli='om -t https://ops-manager.corp.local -u "admin" -p ”VMware1!" -k’
-omcli curl -p /api/v0/certificate_authorities -s | jq -r '.certificate_authorities | select(map(.active == true))[0] | .cert_pem‘ > $HOME/.opsmanager.pem
-omcli curl -p /api/v0/deployed/director/credentials/bosh2_commandline_credentials -s | jq -r '.credential‘
+alias omcli='om -t https://ops-manager.corp.local -u "admin" -p ”VMware1!" -k'
+omcli curl -p /api/v0/certificate_authorities -s | jq -r '.certificate_authorities | select(map(.active == true))[0] | .cert_pem' > $HOME/.opsmanager.pem
+omcli curl -p /api/v0/deployed/director/credentials/bosh2_commandline_credentials -s | jq -r '.credential'
 
 # these variables should go into e.g. .bashrc
 export BOSH_CLIENT=ops_manager
@@ -29,8 +29,9 @@ export BOSH_ENVIRONMENT=ops-manager.corp.local
 # example commands
 
 bosh deployments
-PKS=$(bosh deployments | grep ^pivotal | awk '{print $1;}’)
-bosh -d $PKS vms$ bosh -d $PKS instances
+PKS=$(bosh deployments | grep ^pivotal | awk '{print $1;}')
+bosh -d $PKS vms
+bosh -d $PKS instances
 bosh -d $PKS tasks
 bosh -d $PKS tasks -ar
 bosh -d $PKS task 724
