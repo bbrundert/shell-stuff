@@ -4,7 +4,7 @@
 
 # Download bosh CLI
 wget https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.1.2-linux-amd64
-chmod +x bbosh-cli-5.1.2-linux-amd64
+chmod +x bosh-cli-5.1.2-linux-amd64
 mv bosh-cli-5.1.2-linux-amd64 /usr/local/bin/bosh
 bosh -v
 
