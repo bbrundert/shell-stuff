@@ -1,0 +1,18 @@
+# latest bosh version available via https://bosh.io/docs/
+# documentation available via https://bosh.io/docs/cli-v2/
+
+wget https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-5.1.2-linux-amd64
+chmod +x bosh-cli-*
+mv bosh-cli-* /usr/local/bin/bosh
+bosh -v
+
+
+alias omcli='om -t https://ops-manager.corp.local -u "admin" -p ”VMware1!" -k’
+omcli curl -p /api/v0/certificate_authorities -s | jq -r '.certificate_authorities | select(map(.active == true))[0] | .cert_pem‘ > $HOME/.opsmanager.pem
+omcli curl -p /api/v0/deployed/director/credentials/bosh2_commandline_credentials -s | jq -r '.credential‘
+
+# these variables should go into e.g. .bashrc
+export BOSH_CLIENT=ops_manager
+export BOSH_CLIENT_SECRET=VnD2P0r3esn_coOuMo0RsUO-Tk9t6baR
+export BOSH_CA_CERT=$HOME/.opsmanager.pem
+export BOSH_ENVIRONMENT=ops-manager.corp.local
