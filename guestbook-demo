@@ -1,0 +1,42 @@
+# Demo Application from https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
+
+# Redis Master Deployment
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-deployment.yaml
+
+# Redis Master Service
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-service.yaml
+
+# Redis Slave Deployment
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-slave-deployment.yaml
+
+# Redis Slave Service
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-slave-service.yaml
+
+# Frontend Deployment
+kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-deployment.yaml
+
+# Frontend Service
+# Example file contains NodePort but we want to use type LoadBalancer
+# kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-service.yaml
+
+cat <<EOF > frontend-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: guestbook
+    tier: frontend
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+EOF
+
+kubectl apply -f frontend-service.yaml
+
+# Show running components
+kubectl get pods
+kubectl get services
