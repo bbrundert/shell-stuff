@@ -1,4 +1,5 @@
 # Demo Application from https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
+# tested on PKS 1.1 & NSX-T 2.1, works without any modifications and deploys LB dynamically
 
 # Redis Master Deployment
 kubectl apply -f https://k8s.io/examples/application/guestbook/redis-master-deployment.yaml
