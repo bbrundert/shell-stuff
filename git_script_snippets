@@ -1,0 +1,20 @@
+# create a repo from remote branch
+###
+# if no globals are set do so otherwise git spams you with questions - ommmit --global parameters only for this repo
+# avoid nasty feddback with piping to bit bucket > /dev/null 2>&1 (test before ;-) )
+git config --global user.mail "a@bc.de"
+git config --global user.user "a name - not an account - just for info puprpose"
+# clone your desired remote repo - assuming user public key is stored in GitHub!
+git clone git@github.com:UserOfRepo/desiredRepo.git --aBranch # ommit --branch for master
+# if you need to exclude files and directories built an gitignore
+echo aFile >> .gitignore
+echo aDir/ >> .gitignore
+echo *.log >> .gitignore
+# do your changes and then add files to head
+git add --git-dir=/your/path/to/.git --work-tree=/your/path/to/add/things * # or whatever you want *.sh or aDedicatedFile.txt
+## --git-dir & --work-tree if you are working outside (relative) your repo directory - normal for scripts
+git add commit -m "your commit note"
+# do more changes, add mor things, commit more stages or flags
+# at least push your changes
+aDirVar=/your/path/to/.git
+git --git-dir="$aDirVar" push # variables must be quoted
