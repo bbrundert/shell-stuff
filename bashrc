@@ -13,3 +13,6 @@ export GOVC_DATACENTER=datacenter
 export GOVC_NETWORK=management
 export GOVC_DATASTORE=iscsi
 export GOVC_RESOURCE_POOL=*/Resources
+
+# setup autocomplete in bash into the current shell, bash-completion package should be installed first.
+source <(kubectl completion bash) 
